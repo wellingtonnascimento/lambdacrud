@@ -1,38 +1,30 @@
-// src/customers/update.js
-require("dotenv").config();
-const faunadb = require("faunadb");
+require('dotenv').config();
+const faunadb = require('faunadb');
 
-/* configure faunaDB Client with our secret */
 const q = faunadb.query;
 const client = new faunadb.Client({
-  secret: process.env.FAUNADB_SERVER_SECRET,
+  secret: process.env.FAUNADB_SERVER_SECRET
 });
 
-/* export our lambda function as named "handler" export */
 exports.handler = async (event, context) => {
-  /* parse the string body into a useable JS object */
+  console.log(event.body);
   const data = JSON.parse(event.body);
-  console.log("Function `create` invoked", data);
-  const item = {
-    data: data,
-  };
-  /* construct the fauna query */
+  const id = event.id;
+  console.log(`Function 'update' invoked. update id: ${id}`);
   return client
-    .query(q.Update(q.Ref("classes/customers"), item))
-    .then((response) => {
-      console.log("success", response);
-      /* Success! return the response with statusCode 200 */
+    .query(q.Update(q.Ref(`classes/customers/${id}`), { data }))
+    .then(response => {
+      console.log('success', response);
       return {
         statusCode: 200,
-        body: JSON.stringify(response),
+        body: JSON.stringify(response)
       };
     })
-    .catch((error) => {
-      console.log("error", error);
-      /* Error! return the error with statusCode 400 */
+    .catch(error => {
+      console.log('error', error);
       return {
         statusCode: 400,
-        body: JSON.stringify(error),
+        body: JSON.stringify(error)
       };
     });
 };
