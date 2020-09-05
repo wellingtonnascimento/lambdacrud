@@ -1,7 +1,6 @@
 [dev]
-  command = "npm run serve"
-  function = "lambda"
+    command = "npm run serve"
+    functions = "lambda"
 
 [build]
-
-  function = "lambda"
+    functions = "lambda"
