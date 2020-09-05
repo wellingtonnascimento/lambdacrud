@@ -4,7 +4,7 @@ require('dotenv').config();
 const faunadb = require('faunadb');
 const q = faunadb.query;
 const client = new faunadb.Client({
-  secret: 275834229552579091
+  secret: process.env.FAUNADB_SERVER_SECRET
 });
 
 /* export our lambda function as named "handler" export */
