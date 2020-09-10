@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/wellingtonnascimento/lambdacrud",
   "dependencies": {
+    "encoding": "^0.1.13",
     "faunadb": "^2.14.2",
     "netlify-lambda": "^2.0.1",
     "webpack": "^4.44.1"
